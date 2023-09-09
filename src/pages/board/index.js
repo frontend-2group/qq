@@ -1,4 +1,5 @@
 import { usePost } from "../../boardContext";
+import AddPost from "./components/adddPost";
 import OnePost from "./components/onePost";
 
 const BoardPage = () => {
@@ -6,6 +7,7 @@ const BoardPage = () => {
 
   return (
     <div>
+      <AddPost />
       {post.map((post) => (
         <OnePost key={post.id} post={post} />
       ))}

@@ -1,5 +1,7 @@
 import { styled } from "styled-components";
 import { useState } from "react";
+import AddPostFix from "./addPostFix";
+import AddPostDel from "./addPostDel";
 
 const OnePost = ({ post }) => {
   // 이미지 페이지 네이션
@@ -20,7 +22,15 @@ const OnePost = ({ post }) => {
       <PostBox>
         <PostUser>
           <ProfileImg src={post.User.profileImg} alt="img" />
+
           {post.User.nickName}
+          {/* 게시물 기능버튼 추가 */}
+          {post.myPost && (
+            <div>
+              <AddPostFix postid={post.id} />
+              <AddPostDel postid={post.id} />
+            </div>
+          )}
         </PostUser>
         <PostTitle>{post.title}</PostTitle>
         <ContentImgWrapper>
