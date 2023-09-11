@@ -12,6 +12,7 @@ const PostProvider = ({ children }) => {
     nickname: "",
     profileImg: "",
   });
+  const [commentId, setCommentId] = useState("");
   const [addPostShow, setAddPostShow] = useState(false);
   return (
     <PostContext.Provider
@@ -22,6 +23,8 @@ const PostProvider = ({ children }) => {
         setUserData,
         addPostShow,
         setAddPostShow,
+        commentId,
+        setCommentId,
       }}
     >
       {children}

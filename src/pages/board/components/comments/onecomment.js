@@ -34,7 +34,7 @@ export const OneComment = ({ posts, comments, postId, commentsId }) => {
 
       <div>
         <DeleteComments
-          postId={post.id}
+          postId={posts.id}
           commentId={comments.id}
           comment={comments.content}
         />
