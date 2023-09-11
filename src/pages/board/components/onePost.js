@@ -1,9 +1,15 @@
 import { styled } from "styled-components";
 import { useState } from "react";
+import OneComment from "./comments/onecomment";
+import AddComments from "./comments/addComments";
+// import { usePost } from "../../../boardContext";
 
 const OnePost = ({ post }) => {
   // 이미지 페이지 네이션
   const [imgIndex, setImgIndex] = useState(0);
+  // 댓글 보기
+  const [isComments, setIsComments] = useState(false);
+
   const beforeImg = () => {
     imgIndex === 0
       ? setImgIndex(post.Post_img.length - 1)
@@ -13,6 +19,9 @@ const OnePost = ({ post }) => {
     imgIndex === post.Post_img.length - 1
       ? setImgIndex(0)
       : setImgIndex(imgIndex + 1);
+  };
+  const onShowComments = () => {
+    setIsComments((prev) => !prev);
   };
 
   return (
@@ -28,8 +37,33 @@ const OnePost = ({ post }) => {
           <ContentImg src={post.Post_img[imgIndex]} alt="img" />
           {post.Post_img.length > 1 && <button onClick={nextImg}>▶</button>}
         </ContentImgWrapper>
+
         <PostContent>{post.content}</PostContent>
-        <button>댓글 보기</button> {/* 여기에 댓글 로직 추가해주세요 */}
+        <button onClick={onShowComments}>
+          {isComments ? "댓글닫기" : "댓글보기"}
+        </button>
+        {isComments && (
+          <div>
+            {post.Comments.map((comment) => (
+              <>
+                <CommentBoxWrapper>
+                  <ProfileImg
+                    src={post.User.profileImg}
+                    alt="img"
+                    style={{ padding: "10px" }}
+                  />
+                  <OneComment
+                    comments={comment}
+                    posts={post}
+                    postId={post.id}
+                    commentsId={comment.id}
+                  />
+                </CommentBoxWrapper>
+              </>
+            ))}
+            <AddComments postId={post.id} />
+          </div>
+        )}
       </PostBox>
     </PostPage>
   );
@@ -45,7 +79,7 @@ const PostPage = styled.div`
 const PostBox = styled.div`
   border: 1px solid black;
   width: 1000px;
-  height: 540px;
+  height: auto;
   margin-bottom: 32px;
   margin-top: 32px;
 `;
@@ -81,3 +115,10 @@ const ContentImg = styled.img`
 
 // 내용
 const PostContent = styled.div``;
+
+//댓글
+
+const CommentBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
