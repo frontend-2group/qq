@@ -7,15 +7,15 @@ export const usePost = () => useContext(PostContext);
 
 const PostProvider = ({ children }) => {
   const [post, setPost] = useState(MockPosts(5));
-
-  const [commentId, setCommentId] = useState("");
-  return (
-    <PostContext.Provider value={{ post, setPost, commentId, setCommentId }}>
   const [userData, setUserData] = useState({
     id: "",
     nickname: "",
     profileImg: "",
   });
+
+  const [commentId, setCommentId] = useState("");
+
+
   const [addPostShow, setAddPostShow] = useState(false);
   return (
     <PostContext.Provider
@@ -26,6 +26,11 @@ const PostProvider = ({ children }) => {
         setUserData,
         addPostShow,
         setAddPostShow,
+
+        commentId,
+        setCommentId,
+
+
       }}
     >
       {children}

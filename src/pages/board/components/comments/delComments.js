@@ -8,6 +8,8 @@ const DeleteComments = ({ postId, commentId }) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       const getPost = post.find((el) => el.id === postId);
 
+      console.log(getPost);
+
       const filterComments = getPost.Comments.filter(
         (el) => el.id !== commentId
       );
