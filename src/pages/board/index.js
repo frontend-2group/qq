@@ -4,11 +4,13 @@ import OnePost from "./components/onePost";
 import UserInformation from "./components/userInformation";
 
 const BoardPage = () => {
-  const { post } = usePost();
+  const { post, addPostShow, setAddPostShow } = usePost();
 
   return (
     <div>
-   <AddPost />
+      <UserInformation />
+      {/* {addPostShow && <AddPost />} */}
+      {addPostShow && <AddPost onClose={() => setAddPostShow(false)} />}
       {post.map((post) => (
         <OnePost key={post.id} post={post} />
       ))}
@@ -16,3 +18,4 @@ const BoardPage = () => {
   );
 };
 export default BoardPage;
+//<AddPost />
