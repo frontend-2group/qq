@@ -4,12 +4,12 @@ import { useState } from "react";
 const OnePost = ({ post }) => {
   // 이미지 페이지 네이션
   const [imgIndex, setImgIndex] = useState(0);
-  const beforeImg = () => {
+  const onBeforeImg = () => {
     imgIndex === 0
       ? setImgIndex(post.Post_img.length - 1)
       : setImgIndex(imgIndex - 1);
   };
-  const nextImg = () => {
+  const onNextImg = () => {
     imgIndex === post.Post_img.length - 1
       ? setImgIndex(0)
       : setImgIndex(imgIndex + 1);
@@ -24,9 +24,9 @@ const OnePost = ({ post }) => {
         </PostUser>
         <PostTitle>{post.title}</PostTitle>
         <ContentImgWrapper>
-          {post.Post_img.length > 1 && <button onClick={beforeImg}>◀</button>}
+          {post.Post_img.length > 1 && <button onClick={onBeforeImg}>◀</button>}
           <ContentImg src={post.Post_img[imgIndex]} alt="img" />
-          {post.Post_img.length > 1 && <button onClick={nextImg}>▶</button>}
+          {post.Post_img.length > 1 && <button onClick={onNextImg}>▶</button>}
         </ContentImgWrapper>
         <PostContent>{post.content}</PostContent>
         <button>댓글 보기</button> {/* 여기에 댓글 로직 추가해주세요 */}
@@ -71,8 +71,8 @@ const ContentImgWrapper = styled.div`
   border: 1px solid black;
   height: 400px;
   display: flex;
-  justify-content: center; /* 이미지를 수평으로 가운데 정렬합니다 */
-  align-items: center; /* 이미지를 수직으로 가운데 정렬합니다 */
+  justify-content: center;
+  align-items: center;
 `;
 const ContentImg = styled.img`
   width: 400px;
