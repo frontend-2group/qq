@@ -1,10 +1,11 @@
 import { usePost } from "../../boardContext";
+import AddPost from "./components/adddPost";
 import OnePost from "./components/onePost";
 import Pagination from "../pagination/pagination";
 import UserInformation from "./components/userInformation";
 
 const BoardPage = () => {
-  const { post, currentPage } = usePost();
+  const { post, addPostShow, setAddPostShow, currentPage } = usePost();
 
   // 한 페이지에 표시할 게시물 수
   const showPageNum = 5;
@@ -20,6 +21,7 @@ const BoardPage = () => {
       {pagePost.map((post) => (
         <OnePost key={post.id} post={post} />
       ))}
+      {addPostShow && <AddPost onClose={() => setAddPostShow(false)} />}
       <Pagination pagePost={pagePost} />
     </div>
   );

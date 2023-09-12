@@ -15,8 +15,14 @@ const PostProvider = ({ children }) => {
     profileImg: "",
   });
 
+
   // 페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [commentId, setCommentId] = useState("");
+
+
+  const [addPostShow, setAddPostShow] = useState(false);
 
   return (
     <PostContext.Provider
@@ -25,8 +31,16 @@ const PostProvider = ({ children }) => {
         setPost,
         userData,
         setUserData,
+
         currentPage,
         setCurrentPage,
+
+        addPostShow,
+        setAddPostShow,
+
+        commentId,
+        setCommentId,
+
       }}
     >
       {children}

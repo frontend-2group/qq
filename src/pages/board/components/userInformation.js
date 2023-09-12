@@ -2,8 +2,10 @@ import { styled } from "styled-components";
 import { usePost } from "../../../boardContext";
 
 const UserInformation = () => {
-  const { userData } = usePost();
-
+  const { userData, setAddPostShow } = usePost();
+  const onAddPost = () => {
+    setAddPostShow((prev) => !prev);
+  };
   return (
     <>
       <MyDataBox>
@@ -13,7 +15,7 @@ const UserInformation = () => {
             <ProfileImg src={userData.profileImg} alt="img" />
             {userData.nickname}
             <br />
-            <button>게시물 작성</button>
+            <button onClick={onAddPost}>게시물 작성</button>
             <br />
             <button>게시물 조회</button>
           </ProfileBox>
@@ -28,7 +30,6 @@ export default UserInformation;
 const MyDataBox = styled.div`
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid black; */
   width: 100%;
   height: 80px;
 `;
