@@ -1,13 +1,14 @@
+import { styled } from "styled-components";
 import { usePost } from "../../../../boardContext";
 import DeleteComments from "./delComments";
 import UpdateComments from "./updateComments";
 
 export const OneComment = ({ posts, comments, postId, commentsId }) => {
-  const { post, commentId, setCommentId } = usePost();
+  const { post, commentId, setCommentId, userData } = usePost();
 
   const onOpenUpdateInput = () => {
     const getPost = post.find((el) => el.id === postId);
-    // console.log(getPost);
+
     const comment = getPost.Comments.find((el) => el.id === commentsId);
 
     setCommentId(comment.id);
@@ -15,32 +16,43 @@ export const OneComment = ({ posts, comments, postId, commentsId }) => {
 
   return (
     <>
-      {commentId === comments.id ? (
+      {commentsId === commentId ? (
         <>
-          {/*값 갱신하는 수정버튼  */}
           <UpdateComments
             comments={comments}
             commentsId={commentsId}
             postId={posts.id}
           />
+          <DeleteComments
+            postId={posts.id}
+            commentId={commentsId}
+            comment={comments.content}
+          />
         </>
       ) : (
         <>
+          <ProfileImg
+            src={userData.profileImg}
+            alt="img"
+            style={{ padding: "10px" }}
+          />
           <p>{comments.content}</p>
           <button onClick={onOpenUpdateInput}>수정</button>
-          {/*input창 띄우는 용도 */}
+          <DeleteComments
+            postId={posts.id}
+            commentId={commentsId}
+            comment={comments.content}
+          />
         </>
       )}
-
-      <div>
-        <DeleteComments
-          postId={posts.id}
-          commentId={comments.id}
-          comment={comments.content}
-        />
-      </div>
     </>
   );
 };
 
 export default OneComment;
+
+const ProfileImg = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`;

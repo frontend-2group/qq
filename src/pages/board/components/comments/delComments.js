@@ -2,7 +2,6 @@ import { usePost } from "../../../../boardContext";
 
 const DeleteComments = ({ postId, commentId }) => {
   const { post, setPost } = usePost();
-  //   console.log(commentId);
 
   const deleteComment = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {

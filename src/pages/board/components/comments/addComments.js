@@ -1,8 +1,7 @@
 import { usePost } from "../../../../boardContext";
 
 const AddComments = ({ postId }) => {
-  const { post, setPost } = usePost();
-  console.log(post);
+  const { post, setPost, userData } = usePost();
   const onAddComments = (e) => {
     e.preventDefault();
     const comment = e.target.comment.value;
@@ -13,12 +12,12 @@ const AddComments = ({ postId }) => {
       id: Math.floor(Math.random() * 10000),
       content: comment,
       User: {
-        id: Math.floor(Math.random() * 10000),
-        nickName: "",
-        profileImg: "",
+        id: userData.id,
+        nickName: userData.nickName,
+        profileImg: userData.profileImg,
       },
       createdAt: "",
-      myComment: false,
+      myComment: true,
     };
 
     const pushComment = {
