@@ -98,7 +98,7 @@ const OnePost = ({ post }) => {
                     ) : (
                       <>
                         <ProfileImg
-                          src={Array(Math.floor(Math.random() * 3) + 1)
+                          src={Array(Math.floor(Math.random() * 1) + 1)
                             .fill()
                             .map(() => faker.image.url())}
                           alt="img"
