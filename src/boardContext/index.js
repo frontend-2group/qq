@@ -15,12 +15,10 @@ const PostProvider = ({ children }) => {
     profileImg: "",
   });
 
-
   // 페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
 
   const [commentId, setCommentId] = useState("");
-
 
   const [addPostShow, setAddPostShow] = useState(false);
 
@@ -40,7 +38,6 @@ const PostProvider = ({ children }) => {
 
         commentId,
         setCommentId,
-
       }}
     >
       {children}

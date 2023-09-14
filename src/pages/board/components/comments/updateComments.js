@@ -1,7 +1,8 @@
+import { styled } from "styled-components";
 import { usePost } from "../../../../boardContext";
 
 const UpdateComments = ({ commentsId, postId, comments }) => {
-  const { post, setCommentId, setPost } = usePost();
+  const { post, setCommentId, setPost, userData } = usePost();
   const getPost = post.find((el) => el.id === postId);
   const getComment = getPost.Comments.find((el) => el.id === commentsId);
 
@@ -36,10 +37,27 @@ const UpdateComments = ({ commentsId, postId, comments }) => {
     setCommentId("");
   };
   return (
-    <form onSubmit={SubmitUpdateCommentsValue}>
+    <Form onSubmit={SubmitUpdateCommentsValue}>
+      <ProfileImg
+        src={userData.profileImg}
+        alt="img"
+        style={{ padding: "10px" }}
+      />
       <input name="comment" defaultValue={comments.content}></input>
       <button>수정</button>
-    </form>
+    </Form>
   );
 };
 export default UpdateComments;
+
+const ProfileImg = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
