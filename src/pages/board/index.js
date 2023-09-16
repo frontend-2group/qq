@@ -18,4 +18,3 @@ const BoardPage = () => {
   );
 };
 export default BoardPage;
-//<AddPost />
